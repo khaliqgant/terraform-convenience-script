@@ -1,5 +1,5 @@
 #!/bin/sh
-## go: script to handle terraform infrastructure provisioning
+## tf: script to handle terraform infrastructure provisioning
 ## infrastructure
 
 prog="$0"
@@ -9,7 +9,7 @@ me=`basename "$prog"`
 ##
 ## Command: help
 ## Output help commands
-## Usage: ./go help
+## Usage: ./tf help
 help () {
   grep '^##' "$prog" | sed -e 's/^##//' -e "s/_PROG_/$me/" 1>&2
 }
@@ -17,7 +17,7 @@ help () {
 ##
 ## Command: init
 ## Initialize the provision env via terraform
-## Use: ./go init
+## Use: ./tf init
 init () {
     if [[ "$2" = "--debug" ]]; then
         echo "DEBUG: TERRAFORM INIT"
@@ -29,7 +29,7 @@ init () {
 ##
 ## Command: plan
 ## Output the effects the provisioning commands will have
-## Use: ./go plan $environment (prod||staging|dev)
+## Use: ./tf plan $environment (prod||staging|dev)
 plan () {
     if [[ "$2" = "--debug" ]]; then
         echo "DEBUG: TERRAFORM PLAN"
@@ -41,7 +41,7 @@ plan () {
 ##
 ## Command: show
 ## Output the effects the provisioning had
-## Use: ./go show
+## Use: ./tf show
 show () {
     terraform show
 }
@@ -50,7 +50,7 @@ show () {
 ## Command: refresh
 ## The terraform refresh command is used to reconcile the state Terraform knows about (via its state file) with the real-world infrastructure. This can be used to detect any drift from the last-known state, and to update the state file
 ## Docs: See
-## Use: ./go refresh
+## Use: ./tf refresh
 refresh () {
     if [[ "$2" = "--debug" ]]; then
         echo "DEBUG: TERRAFORM REFRESH"
@@ -62,7 +62,7 @@ refresh () {
 ##
 ## Command: destroy
 ## Destroy the resources created by terraform
-## Use: ./go destroy $environment (prod||staging)
+## Use: ./tf destroy $environment (prod||staging)
 destroy () {
     if [[ "$2" = "--debug" ]]; then
         echo "DEBUG: TERRAFORM DESTROY"
@@ -74,7 +74,7 @@ destroy () {
 ##
 ## Command: apply
 ## Run the provisioning commands
-## Use: ./go apply $environment (prod||staging)
+## Use: ./tf apply $environment (prod||staging)
 apply () {
     if [[ "$2" = "--debug" ]]; then
         echo "DEBUG: TERRAFORM APPLY"
