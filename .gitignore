@@ -1,0 +1,5 @@
+# Terraform provisioning
+.terraform
+*.tfstate
+*.tfstate.backup
+*.plan
