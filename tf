@@ -35,7 +35,10 @@ plan () {
         echo "DEBUG: TERRAFORM PLAN"
         echo "terraform plan -var-file='$1.tfvars'"
     fi
-    init $@ && terraform plan -var-file="$1.tfvars"
+    init $@
+    ENV=$1
+    shift
+    terraform plan -var-file="$ENV.tfvars" $@
 }
 
 ##
@@ -68,7 +71,10 @@ destroy () {
         echo "DEBUG: TERRAFORM DESTROY"
         echo "terraform destroy -var-file='$1.tfvars'"
     fi
-    init $@ && terraform destroy -var-file="$1.tfvars"
+    init $@
+    ENV=$1
+    shift
+    terraform destroy -var-file="$ENV.tfvars" $@
 }
 
 ##
@@ -83,4 +89,6 @@ apply () {
     init $@ && terraform apply -var-file="$1.tfvars"
 }
 
-$1 $2 $3 $4
+COMMAND=$1
+shift
+$COMMAND $@
