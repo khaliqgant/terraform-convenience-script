@@ -46,7 +46,18 @@ plan () {
 ## Output the effects the provisioning had
 ## Use: ./tf show
 show () {
+    init $@
     terraform show
+}
+
+##
+## Command: move
+## Move the terraform state, handy when wanting to rename a module
+## Use: ./tf move $environment (prod||staging)
+move () {
+    init $@
+    shift
+    terraform state mv $@
 }
 
 ##
