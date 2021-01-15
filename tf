@@ -23,7 +23,7 @@ init () {
         echo "DEBUG: TERRAFORM INIT"
         echo "terraform init -backend-config='container_name=terraform-state'"
     fi
-    terraform init -backend-config="container_name=terraform-state"
+    terraform init -backend-config="container_name=terraform-state" -reconfigure
 }
 
 ##
