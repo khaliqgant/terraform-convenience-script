@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ## tf: script to handle terraform infrastructure provisioning
 ## infrastructure
 
